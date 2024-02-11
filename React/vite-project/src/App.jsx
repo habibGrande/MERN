@@ -2,34 +2,29 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import PersonCard from './component/PersonCard'
 
+
+var peopleArr =[
+  {"firstName":"Jane", "lastName":"Doe", "age":45, "hairColor":"Black"},
+  {"firstName":"John", "lastName":"Smith","age":88,"hairColor":"Brown"},
+  {"firstName":"Millard", "lastName":"Fillmore","age":50,"hairColor":"Brown"},
+  {"firstName":"Maria", "lastName":"Smith","age":62,"hairColor":"Brown"}
+]
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+
+      {peopleArr.map(person => {
+        return <PersonCard firstName={person.firstName} lastName={person.lastName} age={person.age} hairColor={person.hairColor} />
+      })
+      
+      }
+
+    </div>
+  );
 }
 
 export default App

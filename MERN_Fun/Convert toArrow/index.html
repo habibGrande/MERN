@@ -37,11 +37,11 @@
         
         document.getElementById("hover-this").onmouseout = () => setBackgroundColorById("body", "white");
 
-        getValueFromId = id => document.getElementById(id).value;
+        const getValueFromId = id => document.getElementById(id).value;
 
-        setBackgroundColorById = (id, color) => document.getElementById(id).style = "background-color: " + color;
+        const setBackgroundColorById = (id, color) => document.getElementById(id).style = "background-color: " + color;
         
-        mouseOverFunction = el => el.style = "background-color: black";     
+        const mouseOverFunction = el => el.style = "background-color: black";     
      
     </script>
 </body>
