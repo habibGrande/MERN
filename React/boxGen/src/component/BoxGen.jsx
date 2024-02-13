@@ -7,8 +7,8 @@ const BoxGen = (props) =>{
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newBox = { color };
-        props.addBox(newBox);
+       
+        props.addBox(color);
         setColor("");
     }
 return(
