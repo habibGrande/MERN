@@ -2,9 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-
+import BoxGen from './component/BoxGen';
 function App() {
-  
   const [boxes, setBoxes] = useState([]);
 
   const addBox = (newBox) => {
@@ -14,14 +13,19 @@ function App() {
   return (
     <>
       <h1>Box Generator</h1>
-      <BoxGenerator addBox={addBox} />
-      <div className="container">
+      <BoxGen addBox={addBox}/>
+      <div style={{display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-around'}}>
         {boxes.map((box, i) => (
           <div
             key={i}
             style={{
               backgroundColor: box.color,
-              margin: 50
+              width: 50,
+              height: 50,
+              margin: 50,
+              
             }}
           >
 

@@ -1,17 +1,17 @@
+import React , { useState } from "react";
 
-
-const boxGenerator = (props) =>{
-    const [color, setColor] = useState("");
-    const handleColorChange = (e) => {
+const BoxGen = (props) =>{
+    const [color,setColor] = useState("");
+    const handleColorChange = (e) =>{
         setColor(e.target.value);
-      };
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         const newBox = { color };
         props.addBox(newBox);
         setColor("");
-        };
-    return(
+    }
+return(
         <div>
             <form onSubmit={ handleSubmit }>
                 <label>Color:</label>
@@ -19,8 +19,8 @@ const boxGenerator = (props) =>{
                 <button>Add Box </button>
             </form>
         </div>
-    );
+
+);
 
 }
-
- boxGenerator;
+export default BoxGen;
