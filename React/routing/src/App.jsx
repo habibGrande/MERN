@@ -6,15 +6,16 @@ import React from "react";
 import { useParams } from "react-router";
 import {
   Routes,
-  Route,
-  Link 
+  Route
+  
 } from "react-router-dom";
-const Home = (props) => { 
+const Home = () => { 
   return (
     <h1 >Welcome</h1>
   );
 }
-const Number = (props) => { 
+
+const Number = () => { 
   const { number } = useParams(); 
   return (
     <>
@@ -24,20 +25,16 @@ const Number = (props) => {
     </>
   );
 }
-const Hello = (props) => { 
-  const { word } = useParams(); 
-  const { color } = useParams(); 
-  const { back } = useParams(); 
+
+const Hello = () => { 
+  const { word, color, back } = useParams(); 
+ 
   return (
     <h1 style={{color: color, backgroundColor:back}}>the word is  { word }!</h1>
   );
 }
 
-
-
 function App() {
-  const [count, setCount] = useState(0)
-
 
   return (
     <>
