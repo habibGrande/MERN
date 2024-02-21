@@ -1,22 +1,33 @@
-import React , { useEffect, useState }from 'react'
+import React from 'react'
 import axios from 'axios';
-    
+import { Link } from 'react-router-dom';
+
 const ProductList = (props) => {
-    // const [product, setproduct] = useState({})
-    // useEffect(() => {
-    //     axios.get('http://localhost:8000/api/products/')
-    //         .then(res => setproduct(res.data))
-    //         .catch(err => console.error(err));
-    // }, []);
+
+    const { removeFromDom } = props;
+    
+    const deleteProduct = (id) => {
+        
+        axios.delete('http://localhost:8000/api/products/' + id)
+            .then(res => {
+                removeFromDom(id)
+            })
+            .catch(err => console.error(err));
+    }
+    
     return (
         <div>
-            {props.product.map( (product, i) =>
-                <p key={i}>
-                    <h2>{product.title}</h2> 
-                    <p>Price: {product.price}</p>
-                    <p>Description: {product.desc}</p>
+            {props.product.map((product, idx) => {
+                return <p key={idx}>
+                    <Link to={"/products" + product._id}>
+                        <h1>{product.title}</h1>
+                    </Link>
+                    
+                    <button onClick={(e)=>{deleteProduct(product._id)}}>
+                        Delete
+                    </button>
                 </p>
-            )}
+            })}
         </div>
     )
 }

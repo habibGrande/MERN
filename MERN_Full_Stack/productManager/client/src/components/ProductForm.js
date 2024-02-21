@@ -17,7 +17,6 @@ export default () =>{
         .catch(err=>console.log(err))
     }
     return(
-        <>
         <form onSubmit={handelSubmit} >
             <p>
                 <label>Title</label>
@@ -25,7 +24,7 @@ export default () =>{
             </p>
             <p>
                 <label>Price</label>
-                <input type='text' onChange={(e)=>setPrice(e.target.value)} value={price}></input>
+                <input type='number' onChange={(e)=>setPrice(e.target.value)} value={price}></input>
             </p>
             <p>
                 <label>Description</label>
@@ -33,6 +32,5 @@ export default () =>{
             </p>
             <button>Submit</button>
         </form>
-        </>
     )
 }
