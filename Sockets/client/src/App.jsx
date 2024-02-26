@@ -1,25 +1,40 @@
-import { useState,useEffect} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import './App.css';
 import io from 'socket.io-client';
-import Chat from './components/Chat';
+import Chat from './views/Chat';
+import Header from './components/Header';
+import GetStartChatting from './views/GetStartChatting';
 
 function App() {
-  const[socket] = useState(()=>io(":8000"))
-  const[message,setMessage] = useState("")
 
-  useEffect(() => {
-    console.log('Is this running?');
-    socket.on('event', data => {
-      console.log(data);
-      setMessage(data);
-    });
-    
-  }, [socket]);
+  const [socket] = useState( () => io.connect("http://localhost:8000"));
+  const [isThereUser, setIsThereUser] = useState(false);
+
+  useEffect( () => {
+    const user = localStorage.getItem("userName");
+    if(user !== null){
+      setIsThereUser(true);
+    }
+  }, []);
+  const handleGetStarting = userName => {
+    localStorage.setItem("userName", userName);
+    setIsThereUser(true);
+  }
+
+  const handleCloseChat = () => {
+    setIsThereUser(false);
+  }
+
+
   return (
     <>
-    <Chat message={message}/>
+      <Header />
+      {
+        isThereUser ?
+        <Chat socket={ socket } handleCloseChat={ handleCloseChat } /> :
+        <GetStartChatting socket={ socket } handleGetStarting={ handleGetStarting } />
+      }
+      
     </>
   )
 }
